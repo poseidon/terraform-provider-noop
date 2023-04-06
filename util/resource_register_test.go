@@ -7,32 +7,32 @@ import (
 )
 
 const registerInitial = `
-resource "util_register" "example" {
+resource "ignore_register" "example" {
 	content = "a1b2c3"
 }
 
 output "out" {
-	value = util_register.example.value
+	value = ignore_register.example.value
 }
 `
 
 const registerUnsetSHA = `
-resource "util_register" "example" {
+resource "ignore_register" "example" {
 	content = ""
 }
 
 output "out" {
-	value = util_register.example.value
+	value = ignore_register.example.value
 }
 `
 
 const registerUpdateSHA = `
-resource "util_register" "example" {
+resource "ignore_register" "example" {
 	content = "b2c3d4"
 }
 
 output "out" {
-	value = util_register.example.value
+	value = ignore_register.example.value
 }
 `
 
@@ -50,7 +50,7 @@ func TestRegister(t *testing.T) {
 			{
 				Config: registerInitial,
 				Check: r.ComposeTestCheckFunc(
-					r.TestCheckResourceAttr("util_register.example", "value", registerInitialExpected),
+					r.TestCheckResourceAttr("ignore_register.example", "value", registerInitialExpected),
 					r.TestCheckOutput("out", registerInitialExpected),
 				),
 			},
@@ -58,7 +58,7 @@ func TestRegister(t *testing.T) {
 			{
 				Config: registerUnsetSHA,
 				Check: r.ComposeTestCheckFunc(
-					r.TestCheckResourceAttr("util_register.example", "value", registerInitialExpected),
+					r.TestCheckResourceAttr("ignore_register.example", "value", registerInitialExpected),
 					r.TestCheckOutput("out", registerInitialExpected),
 				),
 			},
@@ -66,7 +66,7 @@ func TestRegister(t *testing.T) {
 			{
 				Config: registerUpdateSHA,
 				Check: r.ComposeTestCheckFunc(
-					r.TestCheckResourceAttr("util_register.example", "value", registerUpdateExpected),
+					r.TestCheckResourceAttr("ignore_register.example", "value", registerUpdateExpected),
 					r.TestCheckOutput("out", registerUpdateExpected),
 				),
 			},
@@ -75,7 +75,7 @@ func TestRegister(t *testing.T) {
 				Config:   registerUnsetSHA,
 				PlanOnly: true,
 				Check: r.ComposeTestCheckFunc(
-					r.TestCheckResourceAttr("util_register.example", "value", registerUpdateExpected),
+					r.TestCheckResourceAttr("ignore_register.example", "value", registerUpdateExpected),
 					r.TestCheckOutput("out", registerUpdateExpected),
 				),
 			},

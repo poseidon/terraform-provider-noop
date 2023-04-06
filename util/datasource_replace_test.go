@@ -7,7 +7,7 @@ import (
 )
 
 const replaceExample1 = `
-data "util_replace" "example" {
+data "ignore_replace" "example" {
   content = "hello world"
 	replacements = {
 		"/(h|H)ello/": "Hallo",
@@ -17,7 +17,7 @@ data "util_replace" "example" {
 `
 
 const replaceExample2 = `
-data "util_replace" "example" {
+data "ignore_replace" "example" {
   content = "Test content to change"
 	replacements = {
 		"/e/": "o",
@@ -36,13 +36,13 @@ func TestReplace(t *testing.T) {
 			{
 				Config: replaceExample1,
 				Check: r.ComposeTestCheckFunc(
-					r.TestCheckResourceAttr("data.util_replace.example", "replaced", replaceExpected1),
+					r.TestCheckResourceAttr("data.ignore_replace.example", "replaced", replaceExpected1),
 				),
 			},
 			{
 				Config: replaceExample2,
 				Check: r.ComposeTestCheckFunc(
-					r.TestCheckResourceAttr("data.util_replace.example", "replaced", replaceExpected2),
+					r.TestCheckResourceAttr("data.ignore_replace.example", "replaced", replaceExpected2),
 				),
 			},
 		},

@@ -8,10 +8,10 @@ import (
 func Provider() *schema.Provider {
 	return &schema.Provider{
 		ResourcesMap: map[string]*schema.Resource{
-			"util_register": resourceRegister(),
+			"ignore_register": resourceRegister(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
-			"util_replace": datasourceReplace(),
+			"ignore_replace": datasourceReplace(),
 		},
 	}
 }
