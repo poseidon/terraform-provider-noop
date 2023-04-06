@@ -1,6 +1,6 @@
-# terraform-provider-ignore
+# terraform-provider-noop
 
-`terraform-provider-ignore` provides some low-level utility functions.
+`terraform-provider-noop` provides some low-level utility functions.
 
 ## Usage
 

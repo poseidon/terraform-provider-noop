@@ -7,10 +7,10 @@ SEMVER=$(shell git describe --tags --match=v* --always --dirty | cut -c 2-)
 all: build test vet fmt
 
 .PHONY: build
-build: clean bin/terraform-provider-ignore
+build: clean bin/terraform-provider-noop
 
-bin/terraform-provider-ignore:
-	@go build -o $@ github.com/poseidon/terraform-provider-ignore
+bin/terraform-provider-noop:
+	@go build -o $@ github.com/poseidon/terraform-provider-noop
 
 .PHONY: test
 test:
@@ -38,25 +38,25 @@ release: \
 	_output/plugin-darwin-arm64.zip \
 	_output/plugin-windows-amd64.zip
 
-_output/plugin-%.zip: NAME=terraform-provider-ignore_$(SEMVER)_$(subst -,_,$*)
+_output/plugin-%.zip: NAME=terraform-provider-noop_$(SEMVER)_$(subst -,_,$*)
 _output/plugin-%.zip: DEST=_output/$(NAME)
-_output/plugin-%.zip: _output/%/terraform-provider-ignore
+_output/plugin-%.zip: _output/%/terraform-provider-noop
 	@mkdir -p $(DEST)
-	@cp _output/$*/terraform-provider-ignore $(DEST)/terraform-provider-ignore_$(VERSION)
-	@zip -j $(DEST).zip $(DEST)/terraform-provider-ignore_$(VERSION)
+	@cp _output/$*/terraform-provider-noop $(DEST)/terraform-provider-noop_$(VERSION)
+	@zip -j $(DEST).zip $(DEST)/terraform-provider-noop_$(VERSION)
 
-_output/linux-amd64/terraform-provider-ignore: GOARGS = GOOS=linux GOARCH=amd64
-_output/linux-arm64/terraform-provider-ignore: GOARGS = GOOS=linux GOARCH=arm64
-_output/darwin-amd64/terraform-provider-ignore: GOARGS = GOOS=darwin GOARCH=amd64
-_output/darwin-arm64/terraform-provider-ignore: GOARGS = GOOS=darwin GOARCH=arm64
-_output/windows-amd64/terraform-provider-ignore: GOARGS = GOOS=windows GOARCH=amd64
-_output/%/terraform-provider-ignore:
-	$(GOARGS) go build -o $@ github.com/poseidon/terraform-provider-ignore
+_output/linux-amd64/terraform-provider-noop: GOARGS = GOOS=linux GOARCH=amd64
+_output/linux-arm64/terraform-provider-noop: GOARGS = GOOS=linux GOARCH=arm64
+_output/darwin-amd64/terraform-provider-noop: GOARGS = GOOS=darwin GOARCH=amd64
+_output/darwin-arm64/terraform-provider-noop: GOARGS = GOOS=darwin GOARCH=arm64
+_output/windows-amd64/terraform-provider-noop: GOARGS = GOOS=windows GOARCH=amd64
+_output/%/terraform-provider-noop:
+	$(GOARGS) go build -o $@ github.com/poseidon/terraform-provider-noop
 
 release-sign:
-	cd _output; sha256sum *.zip > terraform-provider-ignore_$(SEMVER)_SHA256SUMS
-	gpg2 --detach-sign _output/terraform-provider-ignore_$(SEMVER)_SHA256SUMS
+	cd _output; sha256sum *.zip > terraform-provider-noop_$(SEMVER)_SHA256SUMS
+	gpg2 --detach-sign _output/terraform-provider-noop_$(SEMVER)_SHA256SUMS
 
-release-verify: NAME=_output/terraform-provider-ignore
+release-verify: NAME=_output/terraform-provider-noop
 release-verify:
 	gpg2 --verify $(NAME)_$(SEMVER)_SHA256SUMS.sig $(NAME)_$(SEMVER)_SHA256SUMS

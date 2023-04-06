@@ -1,11 +1,11 @@
-# terraform-provider-ignore
-[![GoDoc](https://pkg.go.dev/badge/github.com/poseidon/terraform-provider-ignore.svg)](https://pkg.go.dev/github.com/poseidon/terraform-provider-ignore)
-[![Workflow](https://github.com/poseidon/terraform-provider-ignore/actions/workflows/test.yaml/badge.svg)](https://github.com/poseidon/terraform-provider-ignore/actions/workflows/test.yaml?query=branch%3Amain)
-![Downloads](https://img.shields.io/github/downloads/poseidon/terraform-provider-ignore/total)
+# terraform-provider-noop
+[![GoDoc](https://pkg.go.dev/badge/github.com/poseidon/terraform-provider-noop.svg)](https://pkg.go.dev/github.com/poseidon/terraform-provider-noop)
+[![Workflow](https://github.com/poseidon/terraform-provider-noop/actions/workflows/test.yaml/badge.svg)](https://github.com/poseidon/terraform-provider-noop/actions/workflows/test.yaml?query=branch%3Amain)
+![Downloads](https://img.shields.io/github/downloads/poseidon/terraform-provider-noop/total)
 [![Sponsors](https://img.shields.io/github/sponsors/poseidon?logo=github)](https://github.com/sponsors/poseidon)
 [![Mastodon](https://img.shields.io/badge/follow-news-6364ff?logo=mastodon)](https://fosstodon.org/@poseidon)
 
-`terraform-provider-ignore` provides some low-level utility functions.
+`terraform-provider-noop` provides some low-level utility functions.
 
 ## Usage
 

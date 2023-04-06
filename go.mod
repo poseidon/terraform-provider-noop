@@ -1,4 +1,4 @@
-module github.com/poseidon/terraform-provider-ignore
+module github.com/poseidon/terraform-provider-noop
 
 go 1.19
 

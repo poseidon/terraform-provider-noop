@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 
-	"github.com/poseidon/terraform-provider-ignore/util"
+	"github.com/poseidon/terraform-provider-noop/util"
 )
 
 func main() {
